@@ -59,3 +59,9 @@ kafka-broker-api-versions.sh --bootstrap-server <broker hostname>:9092
 ```
 zookeeper-shell.sh zookeeper-headless:2181 <<< "ls /brokers/ids" | tail -n 1 | awk -F '[][]' '{print $2}' | sed -e 's/,/\n/g' | wc -l
 ```
+
+10. To see the number of consumers in a consumer group, you can run the following command:
+
+```
+kafka-consumer-groups.sh --bootstrap-server kafka-headless:9092 --describe --group <consumer-group-name>
+```
