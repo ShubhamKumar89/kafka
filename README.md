@@ -38,7 +38,15 @@ kafka-topics.sh --bootstrap-server kafka-headless:9092 --describe --topic <topic
 kafka-consumer-groups.sh --bootstrap-server kafka-headless:9092 --list
 ```
 
-7. Check Kafka broker status:
+7. Check Kafka producer status:
+
+```
+kafka-console-producer.sh --broker-list <broker hostname>:9092 --topic <topic name>
+# example
+# kafka-console-producer.sh --broker-list kafka-headless:9092 --topic <topic>
+```
+
+8. Check Kafka broker status:
 
 ```
 kafka-broker-api-versions.sh --bootstrap-server <broker hostname>:9092
@@ -46,7 +54,7 @@ kafka-broker-api-versions.sh --bootstrap-server <broker hostname>:9092
 // kafka-broker-api-versions.sh --bootstrap-server kafka-headless:9092
 ```
 
-8. To check the number of brokers using the `zookeeper-shell.sh` command, you can try the following command:
+9. To check the number of brokers using the `zookeeper-shell.sh` command, you can try the following command:
 
 ```
 zookeeper-shell.sh zookeeper-headless:2181 <<< "ls /brokers/ids" | tail -n 1 | awk -F '[][]' '{print $2}' | sed -e 's/,/\n/g' | wc -l
