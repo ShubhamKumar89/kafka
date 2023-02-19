@@ -23,7 +23,7 @@ zkCli.sh -server kafka-zookeeper-headless:2181
 ```
 kafka-topics.sh --bootstrap-server <Kafka-Bootstrap-Server-URL> --list
 // example
-// kafka-topics.sh --bootstrap-server sd-core-kafka-headless:9092 --list
+// kafka-topics.sh --bootstrap-server kafka-headless:9092 --list
 ```
 
 5. To check the number of partitions for a particular topic in your Kafka cluster, you can use the `kafka-topics.sh` script with the `--describe` option.
@@ -32,4 +32,22 @@ kafka-topics.sh --bootstrap-server <Kafka-Bootstrap-Server-URL> --list
 kafka-topics.sh --bootstrap-server kafka-headless:9092 --describe --topic <topic>
 ```
 
-`
+6. To show the list of consumer groups in Kafka, you can use the kafka-consumer-groups.sh script:
+
+```
+kafka-consumer-groups.sh --bootstrap-server kafka-headless:9092 --list
+```
+
+7. Check Kafka broker status:
+
+```
+kafka-broker-api-versions.sh --bootstrap-server <broker hostname>:9092
+// example
+// kafka-broker-api-versions.sh --bootstrap-server kafka-headless:9092
+```
+
+8. To check the number of brokers using the `zookeeper-shell.sh` command, you can try the following command:
+
+```
+zookeeper-shell.sh zookeeper-headless:2181 <<< "ls /brokers/ids" | tail -n 1 | awk -F '[][]' '{print $2}' | sed -e 's/,/\n/g' | wc -l
+```
