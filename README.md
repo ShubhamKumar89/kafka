@@ -32,7 +32,7 @@ kafka-topics.sh --bootstrap-server <Kafka-Bootstrap-Server-URL> --list
 kafka-topics.sh --bootstrap-server kafka-headless:9092 --describe --topic <topic>
 ```
 
-6. To show the list of consumer groups in Kafka, you can use the kafka-consumer-groups.sh script:
+6. To show the list of consumer groups in Kafka, you can use the `kafka-consumer-groups.sh` script:
 
 ```
 kafka-consumer-groups.sh --bootstrap-server kafka-headless:9092 --list
@@ -64,4 +64,22 @@ zookeeper-shell.sh zookeeper-headless:2181 <<< "ls /brokers/ids" | tail -n 1 | a
 
 ```
 kafka-consumer-groups.sh --bootstrap-server kafka-headless:9092 --describe --group <consumer-group-name>
+```
+
+11.  To see the messages being produced by producers, you can use `kafka-console-consumer`:
+
+```
+kafka-console-consumer.sh --bootstrap-server kafka-headless:9092 --topic <topic> --from-beginning
+```
+
+12. To get all the properties for a topic, you can run the following command:
+
+```
+kafka-configs.sh --describe --topic <topic> --bootstrap-server kafka-headless:9092
+```
+
+13. To get the properties for a Kafka broker:
+
+```
+kafka-configs.sh --describe --entity-type brokers --entity-default --bootstrap-server kafka-headless:9092
 ```
